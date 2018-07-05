@@ -1,5 +1,5 @@
 import React from 'react';
-import { Accordion, AccordionGroup } from '@bandwidth/shared-components';
+import { Accordion, AccordionGroup, Alert, Button, Card } from '@bandwidth/shared-components';
 
 // all shared component test cases go under here
 var testComponents = {};
@@ -20,6 +20,32 @@ testComponents["AccordionGroup"] = () => (
     <Accordion key={5} label="Option 5">Content 5</Accordion>
     <Accordion key={6} label="Option 6">Content 6</Accordion>
   </AccordionGroup>
+);
+
+testComponents["Alert"] = () => (
+  <Alert type="info">
+    Hello, world
+  </Alert>
+);
+
+testComponents["Button"] = () => (
+  <div>
+    <Button.Large>Primary Large</Button.Large>
+    <Button>Primary Medium</Button>
+    <Button.Small>Primary Small</Button.Small>
+  </div>
+);
+
+testComponents["Card"] = () => (
+  <Card>
+    <Card.Header image={'http://dev.bandwidth.com/design-system/source/images/blue.png'} title="My Card" />
+    <Card.Section>
+      <p>Cards may have a CardHeader with an image and/or title which dictate how the top of the card will look.</p>
+    </Card.Section>
+    <Card.Section>
+      <p>Cards may also have multiple CardSections, which are visually separated within each Card.</p>
+    </Card.Section>
+  </Card>
 );
 
 

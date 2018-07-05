@@ -25,6 +25,7 @@ class App extends Component {
 const SharedComponent = ({ match }) => {
   var DynamComponent = sharedComponents[match.params.component];
   if(!DynamComponent) return (<Error404/>);
+  
   return (
     <BandwidthProvider>
       <h1> </h1>
