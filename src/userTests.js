@@ -3,6 +3,13 @@ import { Accordion, AccordionGroup, Alert, Button, Card } from '@bandwidth/share
 
 // all shared component test cases go under here
 var testComponents = {};
+var testData = {
+  Accordion: { clip: {x:0, y:0, width:800, height:200} },
+  AccordionGroup: { clip: {x:0, y:0, width:800, height:750} },
+  Alert: { },
+  Button: { clip: {x:0, y:0, width:500, height:100} },
+  Card: { clip: {x:0, y:0, width:800, height:300} },
+};
 
 testComponents["Accordion"] = () => (
   <Accordion label="Hello" isExpanded="true">
@@ -49,4 +56,8 @@ testComponents["Card"] = () => (
 );
 
 
-export default testComponents;
+// export default testComponents;
+export default {
+  testComponents,
+  testData,
+}
