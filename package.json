@@ -1,6 +1,6 @@
 {
   "name": "viz_client",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
     "@bandwidth/shared-components": "^4.0.4",

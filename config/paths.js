@@ -54,7 +54,7 @@ module.exports = {
   servedPath: getServedPath(resolveApp('package.json')),
 
   // custom paths below
-  usrTests: resolveApp('../../../../viz-tests'),   //'/Users/mhudnell/dev/test-react-app/viz-tests'  // '../../../../viz-tests'
+  usrTests: resolveApp('/Users/mhudnell/dev/test-react-app/viz-tests'),   //'/Users/mhudnell/dev/test-react-app/viz-tests'  // '../../viz-tests'
   appGatherTests: resolveApp('gatherTests.js'),
   gatherTestsBuild: resolveApp('gatherTestsBuild'),
   gatherTestsBuildIndex: resolveApp('gatherTestsBuild/index.html'),

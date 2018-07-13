@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 import { BandwidthProvider } from '@bandwidth/shared-components';
 
-import tests from './userTests.js'
+import testData from './userTests.js'
 
 class App extends Component {
   render() {
@@ -14,7 +14,7 @@ class App extends Component {
           <Route exact={true} path="/" render={() => (
             <h1>Welcome to the Shared Component display tool</h1>
           )}/>
-          <Route exact={true} path="/c/:component" component={TestComponent} />
+          <Route exact={true} path="/:group/:test" component={TestComponent} />
           <Route exact={true} path="/testData.json" component={TestData} />
           <Route path='*' component={Error404} status={404} />
         </Switch>
@@ -24,7 +24,18 @@ class App extends Component {
 }
 
 const TestComponent = ({ match }) => {
-  var DynamComponent = tests.testComponents[match.params.component];
+  var DynamComponent = null;
+  for(let groupIndex in testData.groups){
+    let group = testData.groups[groupIndex];
+    if(group.groupName === match.params.group){
+      for(let testIndex in group.tests){
+        let test = group.tests[testIndex];
+        if(test.testName === match.params.test){
+          DynamComponent = test.reactFunc;
+        }
+      }
+    }
+  }
   if(!DynamComponent) return (<Error404/>);
   
   return (
@@ -39,7 +50,7 @@ class TestData extends Component {
   render() {
     return (
       <div>
-        {JSON.stringify(tests.testData)}
+        {JSON.stringify(testData)}
       </div>
     );
   }
