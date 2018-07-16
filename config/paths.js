@@ -6,7 +6,9 @@ const url = require('url');
 
 // Make sure any symlinks in the project folder are resolved:
 // https://github.com/facebookincubator/create-react-app/issues/637
-const appDirectory = fs.realpathSync(process.cwd());
+
+// set appDirectory to be the root of viz_client
+const appDirectory = path.resolve(require.resolve('viz_client'), '../../');
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
 const envPublicUrl = process.env.PUBLIC_URL;
@@ -54,7 +56,7 @@ module.exports = {
   servedPath: getServedPath(resolveApp('package.json')),
 
   // custom paths below
-  usrTests: resolveApp('/Users/mhudnell/dev/test-react-app/viz-tests'),   //'/Users/mhudnell/dev/test-react-app/viz-tests'  // '../../viz-tests'
+  usrTests: resolveApp('../../viz-tests'),
   appGatherTests: resolveApp('gatherTests.js'),
   gatherTestsBuild: resolveApp('gatherTestsBuild'),
   gatherTestsBuildIndex: resolveApp('gatherTestsBuild/index.html'),
