@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
-import { BandwidthProvider } from '@bandwidth/shared-components';
-
 import testData from './userTests.js'
 
 class App extends Component {
@@ -39,10 +37,7 @@ const TestComponent = ({ match }) => {
   if(!DynamComponent) return (<Error404/>);
   
   return (
-    <BandwidthProvider>
-      <h1> </h1>
-      <DynamComponent/>
-    </BandwidthProvider>
+    <DynamComponent/>
   );
 }
 
