@@ -121,7 +121,7 @@ module.exports = {
             options: {
               formatter: eslintFormatter,
               eslintPath: require.resolve('eslint'),
-              
+              configFile: require.resolve('eslint-config-react-app'),
             },
             loader: require.resolve('eslint-loader'),
           },
