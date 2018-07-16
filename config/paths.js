@@ -57,7 +57,5 @@ module.exports = {
 
   // custom paths below
   usrTests: resolveApp('../../viz-tests'),
-  appGatherTests: resolveApp('gatherTests.js'),
-  gatherTestsBuild: resolveApp('gatherTestsBuild'),
-  gatherTestsBuildIndex: resolveApp('gatherTestsBuild/index.html'),
+  testStore: resolveApp('../vizreg/lib/dist/testStore-compiled.js'),
 };
