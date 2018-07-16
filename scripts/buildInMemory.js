@@ -24,18 +24,6 @@ const config = require('../config/webpack.config.prod');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const mime = require('mime');
 
-// let compiler = webpack(config);
-// compiler.outputFileSystem = memfs;
-// // compiler.resolvers.normal.fileSystem = memfs;
-// // compiler.resolvers.context.fileSystem = memfs;
-// compiler.run(function(err, stats) {
-//   console.log("COMPILED");
-//   if (err) throw err;
-
-//   // console.log(stats.compilation.assets);
-//   // console.log(stats.compilation.assets[paths.appIndexJs].source());
-// });
-
 // Create the production build and print the deployment instructions.
 function buildInMem() {
   console.log('Creating a production build in memory...');
@@ -80,34 +68,36 @@ function buildInMem() {
 }
 
 // this will go in a different file at some point
-buildInMem().then( () => {
-  //===== server from directory for testing
-  // app.use(express.static('/Users/mhudnell/dev/viz_reg/client/build'));
-  // app.get('*', function (req, res) {
-  //   res.sendFile('/Users/mhudnell/dev/viz_reg/client/build/index.html');
-  // });
+async function buildAndServe() {
+  let server = await buildInMem().then( () => {
 
-  let staticJson = JSON.parse(memfs.readFileSync(paths.appBuild + "/asset-manifest.json").toString());
-  let staticList = [];
-  for(var key in staticJson) {
-    staticList.push("/" + staticJson[key]);
-  }
-
-  app.get('*', function(req, res) {
-    // console.log(req.originalUrl + " | " + mime.getType(req.originalUrl));
-
-    // can't use express' app.use() to serve static files with 'memory-fs', so must serve them individually
-    // check to see if the requested url is a static file, serve the correct file if so
-    if(staticList.includes(req.originalUrl)){
-      res.set("Content-Type", mime.getType(req.originalUrl));
-      res.send(memfs.readFileSync(paths.appBuild + req.originalUrl));
-    } else {
-      res.set("Content-Type", "text/html");
-      res.send(memfs.readFileSync(paths.appBuild + "/index.html"));
+    let staticJson = JSON.parse(memfs.readFileSync(paths.appBuild + "/asset-manifest.json").toString());
+    let staticList = [];
+    for(var key in staticJson) {
+      staticList.push("/" + staticJson[key]);
     }
-  });
 
-  let server = app.listen(4000);
-  console.log("SERVING WITH EXPRESS");
-})
+    app.get('*', function(req, res) {
+      // can't use express' app.use() to serve static files with 'memory-fs', so must serve them individually
+      // check to see if the requested url is a static file, serve the correct file if so
+      if(staticList.includes(req.originalUrl)){
+        res.set("Content-Type", mime.getType(req.originalUrl));
+        res.send(memfs.readFileSync(paths.appBuild + req.originalUrl));
+      } else {
+        res.set("Content-Type", "text/html");
+        res.send(memfs.readFileSync(paths.appBuild + "/index.html"));
+      }
+    });
+
+    let server = app.listen(4000);
+    console.log("Successfully built");
+
+    return server;
+  })
+
+  return server;
+}
+
+
+module.exports = buildAndServe;
 
