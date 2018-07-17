@@ -34,8 +34,29 @@ function buildInMem() {
   return new Promise((resolve, reject) => {
     compiler.run((err, stats) => {
       if (err) {
+        process.stdout.write("Error: ");
+        console.error(err.stack || err);
+        if (err.details) {
+          console.error(err.details);
+        }
         return reject(err);
       }
+
+      const info = stats.toJson();
+
+      if (stats.hasErrors()) {
+        process.stdout.write("hasErrors: ");
+        for(let errIndex in info.errors){
+          console.warn(info.errors[errIndex]);
+        }
+      }
+      if (stats.hasWarnings()) {
+        process.stdout.write("WARNING in: ");
+        for(let warnIndex in info.warnings){
+          console.warn(info.warnings[warnIndex]);
+        }
+      }
+      
       const messages = formatWebpackMessages(stats.toJson({}, true));
       if (messages.errors.length) {
         // Only keep the first error. Others are often indicative
@@ -90,7 +111,7 @@ async function buildAndServe() {
     });
 
     let server = app.listen(4000);
-    console.log("Successfully built");
+    console.log("DONE: Renderer client finished building\n");
 
     return server;
   })
