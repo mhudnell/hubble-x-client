@@ -26,7 +26,6 @@ const mime = require('mime');
 
 // Create the production build and print the deployment instructions.
 function buildInMem() {
-  console.log('Creating a production build in memory...');
   memfs.mkdirpSync(paths.appBuild);
 
   let compiler = webpack(config);
@@ -56,7 +55,7 @@ function buildInMem() {
           console.warn(info.warnings[warnIndex]);
         }
       }
-      
+
       const messages = formatWebpackMessages(stats.toJson({}, true));
       if (messages.errors.length) {
         // Only keep the first error. Others are often indicative
@@ -111,7 +110,6 @@ async function buildAndServe() {
     });
 
     let server = app.listen(4000);
-    console.log("DONE: Renderer client finished building\n");
 
     return server;
   })
