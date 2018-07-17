@@ -1,6 +1,6 @@
 {
-  "name": "viz_client",
-  "version": "0.2.0",
+  "name": "hubble-x-client",
+  "version": "0.2.10",
   "main": "./scripts/buildInMemory.js",
   "private": true,
   "dependencies": {

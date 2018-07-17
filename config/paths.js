@@ -8,7 +8,7 @@ const url = require('url');
 // https://github.com/facebookincubator/create-react-app/issues/637
 
 // set appDirectory to be the root of viz_client
-const appDirectory = path.resolve(require.resolve('viz_client'), '../../');
+const appDirectory = path.resolve(require.resolve('hubble-x-client'), '../../');
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
 const envPublicUrl = process.env.PUBLIC_URL;
@@ -57,5 +57,5 @@ module.exports = {
 
   // custom paths below
   usrTests: resolveApp('../../viz-tests'),
-  testStore: resolveApp('../vizreg/lib/dist/testStore-compiled.js'),
+  testStore: resolveApp('../hubble-x/lib/dist/testStore-compiled.js'),
 };
