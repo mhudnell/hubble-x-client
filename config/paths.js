@@ -56,6 +56,6 @@ module.exports = {
   servedPath: getServedPath(resolveApp('package.json')),
 
   // custom paths below
-  usrTests: resolveApp('../../viz-tests'),
+  usrTests: resolveApp('../../hubble-tests'),
   testStore: resolveApp('../hubble-x/lib/dist/testStore-compiled.js'),
 };
