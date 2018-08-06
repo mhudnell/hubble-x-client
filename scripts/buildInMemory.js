@@ -24,7 +24,9 @@ const config = require('../config/webpack.config.prod');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const mime = require('mime');
 
-// Create the production build and print the deployment instructions.
+/*
+ *  Description: Bundles user test files with the create-react-app renderer client. Stores files in memory with memfs.
+ */
 function buildInMem() {
   memfs.mkdirpSync(paths.appBuild);
 
@@ -87,7 +89,9 @@ function buildInMem() {
   });
 }
 
-// this will go in a different file at some point
+/*
+ *  Description: Calls buildInMem() to build the renderer, then serves it with express.
+ */
 async function buildAndServe() {
   let server = await buildInMem().then( () => {
 
