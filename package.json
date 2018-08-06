@@ -1,6 +1,6 @@
 {
   "name": "hubble-x-client",
-  "version": "0.2.10",
+  "version": "0.3.0",
   "main": "./scripts/buildInMemory.js",
   "private": true,
   "dependencies": {
