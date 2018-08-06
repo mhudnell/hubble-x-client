@@ -1,5 +1,6 @@
 {
   "name": "hubble-x-client",
+  "description": "A renderer client for use by the hubble-x package",
   "version": "0.3.0",
   "main": "./scripts/buildInMemory.js",
   "private": true,
